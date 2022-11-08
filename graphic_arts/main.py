@@ -2,55 +2,57 @@ from random import randint
 
 
 def attack(char_name: str, char_class: str) -> str:
-    """Функция описывает атаку персонажа."""
-    damage: int = 0
+    """Воитель наносит атаку."""
     if char_class == 'warrior':
-        damage = 5 + randint(3, 5)
+        return (f'{char_name} нанёс противнику урон, равный '
+                f'{5 + randint(3, 5)}')
     if char_class == 'mage':
-        damage = 5 + randint(5, 10)
+        return (f'{char_name} нанёс противнику урон, равный '
+                f'{5 + randint(5, 10)}')
     if char_class == 'healer':
-        damage = 5 + randint(-3, -1)
-    return f'{char_name} нанёс урон противнику равный {damage}'
+        return (f'{char_name}  нанёс противнику урон, равный '
+                f'{5 + randint(-3, -1)}')
 
 
+# noinspection SpellCheckingInspection
 def defence(char_name: str, char_class: str) -> str:
-    """Функция описывает защиту персонажа."""
-    defence_point: int = 0
+    """Воитель защищается."""
     if char_class == 'warrior':
-        defence_point = 10 + randint(5, 10)
+        return f'{char_name} блокировал {10 + randint(5, 10)} ед. урона'
     if char_class == 'mage':
-        defence_point = 10 + randint(-2, 2)
+        return f'{char_name} блокировал {10 + randint(-2, 2)} ед. урона'
     if char_class == 'healer':
-        defence_point = 10 + randint(2, 5)
-    return f'{char_name} блокировал {defence_point} урона'
+        return f'{char_name}  блокировал {10 + randint(2, 5)} ед. урона'
 
 
+# noinspection SpellCheckingInspection
 def special(char_name: str, char_class: str) -> str:
-    """Функция использования специальных способностей персонажем."""
-    ability: str = ''
+    """Воитель применил специальное умение."""
     if char_class == 'warrior':
-        ability = '«Выносливость 105»'
+        return (f'{char_name} применил специальное умение '
+                f'«Выносливость {80 + 25}»')
     if char_class == 'mage':
-        ability = '«Атака 45»'
+        return f'{char_name}  применил специальное умение «Атака {5 + 40}»'
     if char_class == 'healer':
-        ability = '«Защита 40»'
-    return (f'{char_name} применил специальное умение {ability}')
+        return (f'{char_name}  применил специальное умение '
+                f'«Защита {10 + 30}»')
 
 
+# noinspection PyTypeChecker,SpellCheckingInspection
 def start_training(char_name: str, char_class: str) -> str:
-    """Функция описывает треннировку персонажа."""
+    """ты Воитель — великий мастер ближнего боя."""
     if char_class == 'warrior':
-        print(f'{char_name}, ты Воитель — отличный боец ближнего боя.')
+        print(f'{char_name}, ты Воитель — великий мастер ближнего боя.')
     if char_class == 'mage':
         print(f'{char_name}, ты Маг — превосходный укротитель стихий.')
     if char_class == 'healer':
         print(f'{char_name}, ты Лекарь — чародей, способный исцелять раны.')
     print('Потренируйся управлять своими навыками.')
-    print('Введи одну из команд: attack — чтобы атаковать противника, defence'
-          ' — чтобы блокировать атаку противника или special'
-          ' — чтобы использовать свою суперсилу.')
+    print('Введи одну из команд: attack — чтобы атаковать противника, '
+          'defence — чтобы блокировать атаку противника или '
+          'special — чтобы использовать свою суперсилу.')
     print('Если не хочешь тренироваться, введи команду skip.')
-    cmd: str = ''
+    cmd: str = None
     while cmd != 'skip':
         cmd = input('Введи команду: ')
         if cmd == 'attack':
@@ -62,14 +64,14 @@ def start_training(char_name: str, char_class: str) -> str:
     return 'Тренировка окончена.'
 
 
+# noinspection PyTypeChecker,SpellCheckingInspection
 def choice_char_class() -> str:
-    """Функция описывает выбор класса персонажа."""
-    approve_choice: str = ''
-    char_class: str = ''
+    """Введите пожалуйсто название персонажа."""
+    approve_choice: str = None
+    char_class: str = None
     while approve_choice != 'y':
         char_class = input('Введи название персонажа, '
-                           'за которого хочешь играть: '
-                           'Воитель — warrior, '
+                           'за которого хочешь играть: Воитель — warrior, '
                            'Маг — mage, Лекарь — healer: ')
         if char_class == 'warrior':
             print('Воитель — дерзкий воин ближнего боя. '
@@ -86,8 +88,9 @@ def choice_char_class() -> str:
     return char_class
 
 
-def main() -> None:
-    """Функция запуска игры."""
+# noinspection SpellCheckingInspection
+def main():
+    """Выбирай на выбор кем ты будешь."""
     print('Приветствую тебя, искатель приключений!')
     print('Прежде чем начать игру...')
     char_name: str = input('...назови себя: ')
@@ -98,4 +101,5 @@ def main() -> None:
     char_class: str = choice_char_class()
     print(start_training(char_name, char_class))
 
-    main()
+
+main()
